@@ -3,78 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Odin Financial Group | Premium USA Online Banking</title>
+    <title>OdinCore International | Elite Private Banking</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
-        .hero-gradient { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #ffffff; color: #0f172a; scroll-behavior: smooth; }
+        .hero-mesh {
+            background-color: #020617;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(251, 191, 36, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(30, 58, 138, 0.2) 0px, transparent 50%);
+        }
+        .gold-gradient {
+            background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glass-nav {
+            backdrop-filter: blur(12px);
+            background: rgba(2, 6, 23, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
-<body class="bg-white text-slate-900">
-
-    <!-- Security Header -->
-    <div class="bg-blue-600 text-white text-[10px] py-2 text-center font-bold uppercase tracking-[0.2em]">
-        Official Secure Connection: TLS 1.3 Encryption Active
-    </div>
+<body>
 
     <!-- Navigation -->
-    <nav class="border-b sticky top-0 bg-white/80 backdrop-blur-md z-50">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-8">
-                <div class="text-2xl font-black tracking-tighter text-slate-900">
-                    ODIN<span class="text-blue-600">FINANCIAL</span>
-                </div>
-                <div class="hidden md:flex space-x-6 text-sm font-semibold text-slate-600">
-                    <a href="#" class="hover:text-blue-600 transition">Personal</a>
-                    <a href="#" class="hover:text-blue-600 transition">Business</a>
-                    <a href="#" class="hover:text-blue-600 transition">Commercial</a>
-                </div>
+    <nav class="fixed w-full z-50 glass-nav py-5 px-6 md:px-16 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-amber-500 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/20">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-slate-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
             </div>
-            <div class="flex items-center space-x-4">
-                <a href="login.html" class="text-sm font-bold text-slate-700 hover:text-blue-600">Sign In</a>
-                <button class="bg-blue-600 text-white px-6 py-2.5 rounded-full text-sm font-bold shadow-lg shadow-blue-200 hover:bg-blue-700 transition">
-                    Open Account
-                </button>
-            </div>
+            <span class="text-white font-extrabold tracking-tighter text-2xl italic">ODINCORE</span>
+        </div>
+        
+        <div class="hidden lg:flex gap-10 text-slate-400 text-sm font-bold uppercase tracking-widest">
+            <a href="#personal" class="hover:text-amber-500 transition-colors">Personal</a>
+            <a href="#business" class="hover:text-amber-500 transition-colors">Business</a>
+            <a href="#wealth" class="hover:text-amber-500 transition-colors">Wealth</a>
+            <a href="#security" class="hover:text-amber-500 transition-colors">Security</a>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <button onclick="window.location.href='login.html'" class="bg-amber-500 hover:bg-amber-400 text-slate-900 px-8 py-3 rounded-full font-black text-xs uppercase tracking-widest transition-all shadow-lg shadow-amber-500/20">
+                Login
+            </button>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-gradient py-20 lg:py-32 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center text-white">
-            <div class="relative z-10">
-                <h1 class="text-5xl lg:text-7xl font-extrabold leading-tight mb-6">
-                    Banking for the <br><span class="text-blue-500">Bold.</span>
-                </h1>
-                <p class="text-slate-400 text-lg mb-10 max-w-lg leading-relaxed">
-                    Experience premier USA financial services with Odin Financial. Higher yields, zero maintenance fees, and world-class digital security.
-                </p>
-                <div class="flex gap-4">
-                    <button class="bg-white text-slate-900 px-8 py-4 rounded-xl font-bold text-lg hover:bg-blue-50 transition shadow-xl">
-                        Get Started Today
-                    </button>
+    <section class="hero-mesh min-h-screen pt-32 pb-20 px-6 md:px-16 flex flex-col lg:flex-row items-center justify-between gap-16">
+        <div class="lg:w-1/2 space-y-10">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/20">
+                <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+                <span class="text-amber-500 text-[10px] font-black uppercase tracking-[0.2em]">Institutional Banking 2026</span>
+            </div>
+            <h1 class="text-6xl md:text-8xl font-extrabold text-white leading-[0.9] tracking-tighter">
+                Redefining <br><span class="gold-gradient italic">Wealth.</span>
+            </h1>
+            <p class="text-slate-400 text-lg md:text-xl max-w-xl leading-relaxed font-medium">
+                OdinCore provides borderless financial solutions for global professionals. Experience institutional-grade security with the agility of modern fintech.
+            </p>
+            <div class="flex flex-wrap gap-5">
+                <button class="bg-white text-slate-950 px-10 py-5 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-slate-200 transition-all">Get Started</button>
+                <button class="border border-slate-700 text-white px-10 py-5 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-slate-800 transition-all">Watch Protocol</button>
+            </div>
+            <div class="flex items-center gap-6 pt-10 border-t border-slate-800/50">
+                <div class="flex -space-x-3">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" class="w-12 h-12 rounded-full border-4 border-slate-950 object-cover" alt="User">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" class="w-12 h-12 rounded-full border-4 border-slate-950 object-cover" alt="User">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop" class="w-12 h-12 rounded-full border-4 border-slate-950 object-cover" alt="User">
+                </div>
+                <div>
+                    <p class="text-white font-bold text-sm tracking-tight">Active Private Clients</p>
+                    <p class="text-slate-500 text-xs font-semibold uppercase tracking-widest">Across 42 Countries</p>
                 </div>
             </div>
-            <div class="relative hidden lg:block">
-                <div class="bg-slate-800 p-2 rounded-3xl border border-white/10 shadow-2xl">
-                    <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=800" class="rounded-2xl opacity-80" alt="App interface">
+        </div>
+        <div class="lg:w-1/2 relative">
+            <div class="absolute -inset-4 bg-amber-500/10 blur-[120px] rounded-full"></div>
+            <div class="relative z-10 p-4 bg-slate-800/30 rounded-[3.5rem] border border-slate-700/50 backdrop-blur-sm shadow-2xl">
+                <img src="https://images.unsplash.com/photo-1556742044-3c52d6e88c62?w=1200&h=900&fit=crop" alt="Premium Banking Interface" class="rounded-[3rem] object-cover shadow-2xl">
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-32 px-6 md:px-16 bg-white overflow-hidden relative" id="personal">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
+                <div class="space-y-4">
+                    <h2 class="text-amber-600 font-black text-xs uppercase tracking-[0.4em]">Core Capabilities</h2>
+                    <h3 class="text-4xl md:text-5xl font-extrabold text-slate-950 tracking-tighter">Superior Financial <br>Infrastructure.</h3>
+                </div>
+                <p class="text-slate-500 max-w-sm font-medium">We built the underlying technology to ensure your assets move faster and remain safer than traditional legacy systems.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="p-12 rounded-[3rem] bg-slate-50 border border-slate-100 card-hover">
+                    <div class="w-16 h-16 bg-amber-100 rounded-2xl flex items-center justify-center text-amber-600 mb-8">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                    </div>
+                    <h4 class="text-2xl font-extrabold mb-4 tracking-tight">Rapid Settlement</h4>
+                    <p class="text-slate-500 leading-relaxed font-medium">Execute international wire transfers in minutes, not days. Leveraging our proprietary global liquidity network.</p>
+                </div>
+
+                <div class="p-12 rounded-[3rem] bg-slate-900 text-white card-hover shadow-2xl shadow-slate-900/20">
+                    <div class="w-16 h-16 bg-amber-500 rounded-2xl flex items-center justify-center text-slate-900 mb-8">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+                    </div>
+                    <h4 class="text-2xl font-extrabold mb-4 tracking-tight">Fortified Vaults</h4>
+                    <p class="text-slate-400 leading-relaxed font-medium">Bank-grade encryption meets cold-storage asset management. Your privacy is our non-negotiable standard.</p>
+                </div>
+
+                <div class="p-12 rounded-[3rem] bg-slate-50 border border-slate-100 card-hover">
+                    <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-600 mb-8">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" /></svg>
+                    </div>
+                    <h4 class="text-2xl font-extrabold mb-4 tracking-tight">Wealth Matrix</h4>
+                    <p class="text-slate-500 leading-relaxed font-medium">Access high-yield instruments and global market accounts from a single unified management dashboard.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-400 py-16">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-[10px] leading-relaxed border-t border-slate-800 pt-12">
-                <p class="mb-4 text-white font-bold tracking-widest uppercase">Member FDIC • Equal Housing Lender</p>
-                <p class="mb-4">Banking services provided by Odin Financial Group. Deposit accounts are FDIC-insured up to $250,000 per depositor. Credit cards are issued by Odin Bank USA, N.A. pursuant to a license from Visa U.S.A. Inc.</p>
-                <p>© 2026 Odin Financial Group. All Rights Reserved.</p>
+    <footer class="bg-slate-950 py-20 px-6 md:px-16 text-slate-500 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-start gap-12">
+            <div class="space-y-6">
+                <div class="flex items-center gap-2">
+                    <div class="w-6 h-6 bg-amber-500 rounded flex items-center justify-center">
+                        <div class="w-2 h-2 bg-slate-900 rounded-full"></div>
+                    </div>
+                    <span class="text-white font-black tracking-tight">ODINCORE</span>
+                </div>
+                <p class="max-w-xs text-xs font-semibold leading-loose uppercase tracking-wider">The premier institution for global digital asset management and institutional private banking.</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-16">
+                <div class="space-y-4">
+                    <p class="text-white font-black text-[10px] uppercase tracking-widest">Solutions</p>
+                    <ul class="text-xs space-y-3 font-bold uppercase tracking-widest">
+                        <li><a href="#" class="hover:text-amber-500 transition-colors">Private Banking</a></li>
+                        <li><a href="#" class="hover:text-amber-500 transition-colors">Corporate Cards</a></li>
+                        <li><a href="#" class="hover:text-amber-500 transition-colors">Wealth Matrix</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <p class="text-white font-black text-[10px] uppercase tracking-widest">Company</p>
+                    <ul class="text-xs space-y-3 font-bold uppercase tracking-widest">
+                        <li><a href="#" class="hover:text-amber-500 transition-colors">Our Ethos</a></li>
+                        <li><a href="#" class="hover:text-amber-500 transition-colors">Security Repo</a></li>
+                        <li><a href="#" class="hover:text-amber-500 transition-colors">Media Kit</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <p class="text-white font-black text-[10px] uppercase tracking-widest">Compliance</p>
+                    <ul class="text-xs space-y-3 font-bold uppercase tracking-widest">
+                        <li><a href="#" class="hover:text-amber-500 transition-colors">AML Policy</a></li>
+                        <li><a href="#" class="hover:text-amber-500 transition-colors">Privacy Shield</a></li>
+                        <li><a href="#" class="hover:text-amber-500 transition-colors">Member FDIC</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-20 pt-8 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-[10px] font-black uppercase tracking-[0.4em] mono">© 2026 ODINCORE FINANCIAL. ALL RIGHTS RESERVED.</p>
+            <div class="flex gap-6 text-[10px] font-black uppercase tracking-widest">
+                <a href="#">Terms</a>
+                <a href="#">Licensing</a>
             </div>
         </div>
     </footer>
 
 </body>
 </html>
-
