@@ -3,46 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OdinCore | Admin Dashboard</title>
+    <title>OdinCore | Admin Terminal</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #020617; color: white; font-family: sans-serif; }
-        .stat-card { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255,255,255,0.1); padding: 20px; border-radius: 20px; }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #020617; 
+            color: white; 
+            margin: 0;
+            min-height: 100vh;
+        }
+        .sidebar {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(20px);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .stat-card {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .stat-card:hover {
+            border-color: #fbbf24;
+            transform: translateY(-2px);
+        }
+        .nav-link {
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+        .nav-link:hover {
+            background: rgba(251, 191, 36, 0.1);
+            border-color: rgba(251, 191, 36, 0.2);
+            color: #fbbf24;
+        }
     </style>
 </head>
-<body class="p-8">
-    <div class="max-w-6xl mx-auto">
-        <div class="flex justify-between items-center mb-10">
-            <h1 class="text-3xl font-black italic">COMMAND <span class="text-amber-500">CENTER</span></h1>
-            <div class="bg-slate-900 p-4 rounded-xl border border-white/5">
-                <p class="text-xs text-slate-500 uppercase font-bold">Logged in as</p>
-                <p class="font-bold">ADMIN-ODIN</p>
+<body class="flex flex-col lg:flex-row">
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar w-full lg:w-72 flex-shrink-0 flex flex-col p-6 lg:h-screen sticky top-0 z-40">
+        <div class="mb-10">
+            <h2 class="text-xl font-black italic tracking-tighter">ODIN<span class="text-amber-500">CORE</span></h2>
+            <p class="text-[9px] text-slate-500 font-bold uppercase tracking-[0.3em]">Institutional Admin</p>
+        </div>
+
+        <nav class="space-y-2 flex-grow">
+            <p class="text-[10px] font-bold text-slate-600 uppercase tracking-widest mb-4 ml-2">Main Menu</p>
+            
+            <a href="admin management terminal.html" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl bg-amber-500/10 text-amber-500 border-amber-500/20 font-bold text-xs uppercase tracking-widest">
+                Dashboard
+            </a>
+            
+            <a href="ACCOUNT%20MANAGEMENT.html" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 font-bold text-xs uppercase tracking-widest">
+                Account Matrix
+            </a>
+
+            <a href="transactions%20history%20page.html" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 font-bold text-xs uppercase tracking-widest">
+                Global Ledger
+            </a>
+
+            <a href="card%20management%20page.html" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 font-bold text-xs uppercase tracking-widest">
+                Card Control
+            </a>
+
+            <a href="security%20settings.html" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 font-bold text-xs uppercase tracking-widest">
+                Security Ops
+            </a>
+        </nav>
+
+        <div class="mt-auto pt-6 border-t border-white/5">
+            <a href="index.html" class="flex items-center gap-3 px-4 py-3 text-red-400 hover:bg-red-400/10 rounded-xl font-bold text-xs uppercase tracking-widest">
+                Terminate Session
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-grow p-6 lg:p-12">
+        <header class="flex justify-between items-center mb-12">
+            <div>
+                <h1 class="text-3xl font-black italic tracking-tighter uppercase">COMMAND <span class="text-amber-500">CENTER</span></h1>
+                <p class="text-xs text-slate-500 font-bold uppercase tracking-widest mt-1">System Status: <span class="text-green-500">Operational</span></p>
+            </div>
+            
+            <div class="text-right hidden sm:block">
+                <p class="text-[10px] font-black text-slate-500 uppercase">Logged in as</p>
+                <p class="text-sm font-bold text-amber-500">ADMIN-ODIN</p>
+            </div>
+        </header>
+
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div class="stat-card p-8 rounded-[2rem]">
+                <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest mb-4">Total Liquid Assets</p>
+                <h3 class="text-3xl font-black text-amber-500 tracking-tighter">$1,240,000,000</h3>
+                <p class="text-[10px] text-green-500 mt-2 font-bold">+2.4% Global Increase</p>
+            </div>
+            <div class="stat-card p-8 rounded-[2rem]">
+                <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest mb-4">Security Protocol</p>
+                <h3 class="text-3xl font-black text-green-500 tracking-tighter">ENCRYPTED</h3>
+                <p class="text-[10px] text-slate-400 mt-2 font-bold">Level 7 Firewall Active</p>
+            </div>
+            <div class="stat-card p-8 rounded-[2rem]">
+                <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest mb-4">Pending Wires</p>
+                <h3 class="text-3xl font-black tracking-tighter">14</h3>
+                <p class="text-[10px] text-amber-500 mt-2 font-bold">Awaiting Auth</p>
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-            <div class="stat-card">
-                <p class="text-xs text-slate-400 uppercase font-bold">Total Assets</p>
-                <h2 class="text-3xl font-black text-amber-500">$1,240,000,000</h2>
-            </div>
-            <div class="stat-card">
-                <p class="text-xs text-slate-400 uppercase font-bold">Security Status</p>
-                <h2 class="text-3xl font-black text-green-500">ENCRYPTED</h2>
-            </div>
-            <div class="stat-card">
-                <p class="text-xs text-slate-400 uppercase font-bold">Pending Wires</p>
-                <h2 class="text-3xl font-black">14</h2>
+        <!-- System Log -->
+        <div class="stat-card p-10 rounded-[2.5rem] bg-slate-900/40">
+            <h4 class="text-xs font-black text-slate-500 uppercase tracking-[0.3em] mb-6">Live System Log</h4>
+            <div class="space-y-4 font-mono text-[11px] text-slate-400">
+                <div class="flex gap-4">
+                    <span class="text-amber-500/50">[02:44:12]</span>
+                    <span>System initialized on node: US-EAST-01</span>
+                </div>
+                <div class="flex gap-4">
+                    <span class="text-amber-500/50">[02:44:15]</span>
+                    <span class="text-green-500">Firewall handshake successful. 128-bit encryption active.</span>
+                </div>
+                <div class="flex gap-4">
+                    <span class="text-amber-500/50">[02:45:01]</span>
+                    <span>Incoming SWIFT query detected from Central Vault.</span>
+                </div>
+                <div class="flex gap-4">
+                    <span class="text-amber-500/50">[02:46:22]</span>
+                    <span>Waiting for transaction synchronization...</span>
+                </div>
             </div>
         </div>
+    </main>
 
-        <div class="bg-slate-900/50 rounded-3xl p-8 border border-white/5">
-            <h3 class="text-xl font-bold mb-6">Live System Log</h3>
-            <div class="space-y-4 opacity-70 font-mono text-sm">
-                <p>> System initialized...</p>
-                <p>> Firewall active on node: US-EAST-01</p>
-                <p>> Waiting for transaction synchronization...</p>
-            </div>
-        </div>
-    </div>
 </body>
 </html>
