@@ -3,115 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transfer Funds | Odin Financial</title>
+    <title>OdinCore | Secure Access</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
-        .success-modal { display: none; }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #020617; 
+            color: white; 
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(251, 191, 36, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(30, 58, 138, 0.1) 0%, transparent 40%);
+        }
+        .auth-container {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.7);
+        }
+        .input-group:focus-within label {
+            color: #fbbf24;
+        }
+        .custom-input {
+            background: rgba(2, 6, 23, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .custom-input:focus {
+            border-color: #fbbf24;
+            background: rgba(2, 6, 23, 0.9);
+            box-shadow: 0 0 0 4px rgba(251, 191, 36, 0.05);
+        }
     </style>
 </head>
-<body class="flex flex-col min-h-screen">
+<body class="p-6">
 
-    <!-- Header -->
-    <nav class="bg-[#0f172a] text-white px-6 py-4 flex justify-between items-center">
-        <div class="flex items-center gap-4">
-            <button onclick="window.location.href='dashboard.html'" class="text-slate-400 hover:text-white flex items-center gap-1">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                Back
-            </button>
-            <div class="text-xl font-bold tracking-tighter">ODIN<span class="text-blue-500">BANK</span></div>
+    <div class="w-full max-w-[480px] auth-container rounded-[2.5rem] p-10 md:p-16 relative overflow-hidden">
+        <!-- Top Branding -->
+        <div class="text-center mb-12">
+            <div onclick="window.location.href='index.html'" class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-tr from-amber-500 to-amber-600 rounded-2xl mb-6 cursor-pointer shadow-2xl shadow-amber-500/20 group">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-slate-900 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+            </div>
+            <h1 class="text-2xl font-extrabold tracking-tighter uppercase italic">OdinCore <span class="text-amber-500">Federal</span></h1>
+            <p class="text-[10px] text-slate-500 font-bold uppercase tracking-[0.4em] mt-2">Access Control Management</p>
         </div>
-        <div class="text-[10px] uppercase tracking-widest text-green-500 font-bold hidden sm:block">
-            ● Encrypted Session Active
-        </div>
-    </nav>
 
-    <main class="flex-1 p-4 md:p-10 max-w-3xl mx-auto w-full">
-        <div class="bg-white rounded-[2.5rem] shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden">
-            <div class="bg-blue-600 p-8 text-white text-center">
-                <h1 class="text-2xl font-bold">Transfer Funds</h1>
-                <p class="text-blue-100 text-sm opacity-80">Move money instantly to any bank globally.</p>
+        <!-- Form Interface -->
+        <div id="auth-interface" class="space-y-8">
+            <div class="space-y-6">
+                <div class="input-group space-y-2">
+                    <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1 transition-colors">Identification ID</label>
+                    <input type="text" id="staff-id" autocomplete="off" placeholder="Enter ID" class="custom-input w-full px-6 py-4 rounded-2xl outline-none text-white font-mono uppercase text-sm">
+                </div>
+
+                <div class="input-group space-y-2">
+                    <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1 transition-colors">Authorization Key</label>
+                    <input type="password" id="passcode" placeholder="••••••••" class="custom-input w-full px-6 py-4 rounded-2xl outline-none text-white font-mono text-sm">
+                </div>
             </div>
 
-            <form id="transferForm" class="p-8 space-y-6">
-                <!-- From Account -->
-                <div>
-                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">From Account</label>
-                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100 flex justify-between items-center">
-                        <div>
-                            <p class="font-bold text-slate-800">Odin Checking</p>
-                            <p class="text-xs text-slate-500">**** 8829</p>
-                        </div>
-                        <p class="font-black text-slate-900">$48,290.55</p>
-                    </div>
-                </div>
-
-                <!-- Recipient Info -->
-                <div class="grid sm:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Recipient Name</label>
-                        <input type="text" required placeholder="Full Name" 
-                            class="w-full px-5 py-4 rounded-2xl bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-50 outline-none transition">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Account Number</label>
-                        <input type="number" required placeholder="0000000000" 
-                            class="w-full px-5 py-4 rounded-2xl bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-50 outline-none transition">
-                    </div>
-                </div>
-
-                <!-- Amount -->
-                <div>
-                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Amount ($)</label>
-                    <div class="relative">
-                        <span class="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-xl">$</span>
-                        <input type="number" step="0.01" required placeholder="0.00" 
-                            class="w-full pl-10 pr-5 py-5 rounded-2xl bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-50 outline-none transition text-2xl font-black text-slate-900">
-                    </div>
-                </div>
-
-                <button type="submit" id="submitBtn" class="w-full bg-slate-900 hover:bg-black text-white font-bold py-5 rounded-2xl transition shadow-xl shadow-slate-200 mt-4 flex justify-center items-center gap-3">
-                    Confirm & Authorize
+            <div class="pt-4">
+                <button onclick="processLogin()" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-900 font-black py-5 rounded-2xl transition-all active:scale-95 uppercase tracking-widest text-xs shadow-xl shadow-amber-500/20">
+                    Verify Identity
                 </button>
-            </form>
+                <div id="error-feedback" class="hidden mt-6 p-4 bg-red-500/10 border border-red-500/20 rounded-xl">
+                    <p class="text-red-500 text-[10px] font-black uppercase text-center tracking-widest">Protocol Error: Access Denied</p>
+                </div>
+            </div>
         </div>
 
-        <!-- Security Notice -->
-        <div class="mt-8 flex items-start gap-4 p-6 bg-blue-50 rounded-2xl border border-blue-100">
-            <div class="bg-blue-600 p-2 rounded-lg text-white">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 00-2 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+        <!-- System Processing UI -->
+        <div id="system-loading" class="hidden py-10 text-center">
+            <div class="relative w-16 h-16 mx-auto mb-6">
+                <div class="absolute inset-0 rounded-full border-4 border-amber-500/20"></div>
+                <div class="absolute inset-0 rounded-full border-4 border-amber-500 border-t-transparent animate-spin"></div>
             </div>
-            <p class="text-xs text-blue-800 leading-relaxed font-medium">
-                <strong>OdinGuard™ Protection:</strong> This transaction is protected by end-to-end encryption. You may be required to enter a 2FA code if the amount exceeds your daily limit.
-            </p>
+            <p class="text-amber-500 font-mono text-[10px] uppercase tracking-[0.3em] font-bold">Establishing Secure Link...</p>
         </div>
-    </main>
 
-    <!-- Success Modal -->
-    <div id="successModal" class="success-modal fixed inset-0 z-[100] bg-slate-900/90 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-white p-10 rounded-[3rem] max-w-sm w-full text-center">
-            <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+        <!-- Bottom Security Footer -->
+        <div class="mt-12 pt-8 border-t border-white/5 flex flex-col items-center gap-4">
+            <div class="flex items-center gap-2 text-[9px] font-bold text-slate-600 uppercase tracking-widest">
+                <span class="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]"></span>
+                Network Status: Encrypted
             </div>
-            <h2 class="text-2xl font-bold text-slate-900 mb-2">Transfer Successful</h2>
-            <p class="text-slate-500 text-sm mb-8">The funds have been dispatched and will arrive shortly.</p>
-            <button onclick="window.location.href='dashboard.html'" class="w-full bg-blue-600 py-4 rounded-2xl text-white font-bold hover:bg-blue-700 transition">Return to Dashboard</button>
+            <p class="text-[8px] text-slate-700 font-bold uppercase tracking-[0.2em] text-center">Unauthorized access attempt is a federal offense</p>
         </div>
     </div>
 
     <script>
-        document.getElementById('transferForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const btn = document.getElementById('submitBtn');
-            btn.innerText = 'Processing Wire...';
-            btn.style.opacity = '0.7';
-            btn.disabled = true;
+        function processLogin() {
+            const id = document.getElementById('staff-id').value.trim().toUpperCase();
+            const pass = document.getElementById('passcode').value.trim();
+            const error = document.getElementById('error-feedback');
+            const ui = document.getElementById('auth-interface');
+            const loader = document.getElementById('system-loading');
 
-            setTimeout(() => {
-                document.getElementById('successModal').style.display = 'flex';
-            }, 2000);
-        });
+            if (id === 'ADMIN-ODIN' && pass === 'ODIN-SECURE-2026') {
+                error.classList.add('hidden');
+                ui.classList.add('hidden');
+                loader.classList.remove('hidden');
+
+                // Redirect to terminal.html
+                setTimeout(() => {
+                    window.location.href = "terminal.html";
+                }, 1800);
+            } else {
+                error.classList.remove('hidden');
+                document.getElementById('passcode').value = '';
+                // Shake effect on error
+                const container = document.querySelector('.auth-container');
+                container.classList.add('translate-x-1');
+                setTimeout(() => container.classList.remove('translate-x-1'), 100);
+            }
+        }
     </script>
 </body>
 </html>
