@@ -3,129 +3,221 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Terminal | Odin Financial</title>
+    <title>OdinCore | Admin Terminal</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #020617; color: #f8fafc; }
-        .stat-card { background: rgba(30, 41, 59, 0.5); border: 1px solid rgba(51, 65, 85, 0.5); }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #020617; 
+            color: white; 
+            margin: 0;
+            min-height: 100vh;
+        }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .sidebar {
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(20px);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .stat-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        .stat-card:hover {
+            border-color: rgba(251, 191, 36, 0.3);
+            background: rgba(30, 41, 59, 0.5);
+        }
+        .pulse-dot {
+            box-shadow: 0 0 10px rgba(34, 197, 94, 0.6);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 10px;
+        }
     </style>
 </head>
-<body class="flex flex-col min-h-screen">
+<body class="flex flex-col lg:flex-row">
 
-    <!-- Admin Header -->
-    <nav class="bg-slate-900 border-b border-slate-800 px-6 py-4 flex justify-between items-center sticky top-0 z-50">
-        <div class="flex items-center gap-3">
-            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-bold">A</div>
-            <div class="text-lg font-black tracking-tighter">ODIN<span class="text-blue-500">CONTROL</span></div>
-        </div>
-        <div class="flex items-center gap-4 text-xs font-bold text-slate-400">
-            <span class="flex items-center gap-1"><span class="w-2 h-2 bg-green-500 rounded-full"></span> SERVER: ACTIVE</span>
-            <button onclick="window.location.href='index.html'" class="bg-red-500/10 text-red-500 px-4 py-2 rounded-lg hover:bg-red-500 hover:text-white transition">LOGOUT</button>
-        </div>
-    </nav>
-
-    <main class="flex-1 p-4 md:p-8 max-w-7xl mx-auto w-full">
-        <!-- Stats Overview -->
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-            <div class="stat-card p-6 rounded-3xl">
-                <p class="text-[10px] uppercase text-slate-500 font-bold mb-1">Total Deposits</p>
-                <h3 class="text-2xl font-black text-white">$12.4M</h3>
+    <!-- Sidebar -->
+    <aside class="sidebar w-full lg:w-72 flex-shrink-0 flex flex-col p-6 lg:h-screen sticky top-0 z-40">
+        <div class="flex items-center gap-3 mb-12">
+            <div class="w-10 h-10 bg-amber-500 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/20">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-slate-900" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
             </div>
-            <div class="stat-card p-6 rounded-3xl">
-                <p class="text-[10px] uppercase text-slate-500 font-bold mb-1">Active Users</p>
-                <h3 class="text-2xl font-black text-white">1,204</h3>
-            </div>
-            <div class="stat-card p-6 rounded-3xl">
-                <p class="text-[10px] uppercase text-slate-500 font-bold mb-1">Pending Wires</p>
-                <h3 class="text-2xl font-black text-yellow-500">14</h3>
-            </div>
-            <div class="stat-card p-6 rounded-3xl">
-                <p class="text-[10px] uppercase text-slate-500 font-bold mb-1">Flagged Activity</p>
-                <h3 class="text-2xl font-black text-red-500">3</h3>
+            <div>
+                <h2 class="text-lg font-black italic tracking-tighter uppercase">ODINCORE</h2>
+                <p class="text-[9px] text-amber-500/70 font-bold uppercase tracking-[0.2em]">Federal Admin</p>
             </div>
         </div>
 
-        <div class="grid lg:grid-cols-3 gap-8">
-            <!-- Pending Approvals -->
-            <div class="lg:col-span-2 space-y-6">
-                <h2 class="text-lg font-bold flex items-center gap-2">
-                    <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    Pending Wire Approvals
-                </h2>
-                
+        <nav class="space-y-2 flex-grow">
+            <a href="#" class="flex items-center gap-4 px-4 py-3 bg-amber-500/10 text-amber-500 rounded-xl font-bold text-xs uppercase tracking-widest border border-amber-500/20">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" /></svg>
+                Dashboard
+            </a>
+            <a href="management.html" class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl font-bold text-xs uppercase tracking-widest transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+                Accounts
+            </a>
+            <a href="#" class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl font-bold text-xs uppercase tracking-widest transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" /></svg>
+                Transactions
+            </a>
+            <a href="#" class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl font-bold text-xs uppercase tracking-widest transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+                Compliance
+            </a>
+        </nav>
+
+        <div class="mt-auto pt-6 border-t border-white/5">
+            <button onclick="window.location.href='index.html'" class="w-full flex items-center gap-4 px-4 py-3 text-red-400 hover:bg-red-400/10 rounded-xl font-bold text-xs uppercase tracking-widest transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
+                Terminate
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-grow p-6 md:p-10 lg:h-screen lg:overflow-y-auto custom-scrollbar">
+        <!-- Top Bar -->
+        <header class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10">
+            <div>
+                <h1 class="text-3xl font-extrabold tracking-tighter">Command <span class="text-amber-500 italic">Center</span></h1>
+                <div class="flex items-center gap-3 mt-2">
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse pulse-dot"></span>
+                    <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest mono" id="live-clock">SYSC: 02:44:12 UTC</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-4 bg-slate-900/50 p-2 rounded-2xl border border-white/5">
+                <div class="px-4 text-right">
+                    <p class="text-[9px] font-black text-slate-500 uppercase tracking-widest">Operator</p>
+                    <p class="text-xs font-bold">ADMIN-ODIN</p>
+                </div>
+                <div class="w-10 h-10 rounded-xl bg-slate-800 border border-amber-500/20 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+                </div>
+            </div>
+        </header>
+
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-10">
+            <div class="stat-card p-6 rounded-[2rem]">
+                <p class="text-[10px] text-slate-500 font-bold uppercase tracking-[0.2em] mb-4">Total Liquidity</p>
+                <div class="flex items-end justify-between">
+                    <h3 class="text-2xl font-black italic tracking-tighter">$1.24B</h3>
+                    <span class="text-[10px] font-bold text-green-500">+2.4%</span>
+                </div>
+            </div>
+            <div class="stat-card p-6 rounded-[2rem]">
+                <p class="text-[10px] text-slate-500 font-bold uppercase tracking-[0.2em] mb-4">Pending Wires</p>
+                <div class="flex items-end justify-between">
+                    <h3 class="text-2xl font-black italic tracking-tighter">14</h3>
+                    <span class="text-[10px] font-bold text-amber-500">Awaiting</span>
+                </div>
+            </div>
+            <div class="stat-card p-6 rounded-[2rem]">
+                <p class="text-[10px] text-slate-500 font-bold uppercase tracking-[0.2em] mb-4">Security Nodes</p>
+                <div class="flex items-end justify-between">
+                    <h3 class="text-2xl font-black italic tracking-tighter">102</h3>
+                    <span class="text-[10px] font-bold text-green-500">Active</span>
+                </div>
+            </div>
+            <div class="stat-card p-6 rounded-[2rem]">
+                <p class="text-[10px] text-slate-500 font-bold uppercase tracking-[0.2em] mb-4">Risk Level</p>
+                <div class="flex items-end justify-between">
+                    <h3 class="text-2xl font-black italic tracking-tighter text-green-500">LOW</h3>
+                    <span class="text-[10px] font-bold text-slate-500">Normal</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Content -->
+        <div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
+            <!-- Feed -->
+            <div class="xl:col-span-2 space-y-6">
+                <h4 class="text-xs font-black text-amber-500 uppercase tracking-[0.4em] mb-4">Live Transaction Feed</h4>
                 <div class="space-y-4">
-                    <!-- Wire 1 -->
-                    <div class="bg-slate-900 border border-slate-800 p-6 rounded-[2rem] flex flex-col md:flex-row justify-between items-center gap-6">
-                        <div class="flex gap-4 items-center">
-                            <div class="w-12 h-12 bg-slate-800 rounded-full flex items-center justify-center font-bold text-slate-400 uppercase">SA</div>
+                    <div class="stat-card p-5 rounded-3xl flex items-center justify-between border-l-4 border-l-green-500">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" /></svg>
+                            </div>
                             <div>
-                                <p class="font-bold text-white">Samuel Akogun</p>
-                                <p class="text-[10px] text-slate-500 uppercase font-medium">To: Bank of America • 09882711</p>
+                                <p class="text-xs font-bold uppercase tracking-tight">External Wire: Swift-Incoming</p>
+                                <p class="text-[10px] text-slate-500 mono">Ref: #SW882190-TX</p>
                             </div>
                         </div>
-                        <div class="text-center md:text-right">
-                            <p class="text-lg font-black text-white">$25,000.00</p>
-                            <p class="text-[10px] text-yellow-500 font-bold uppercase">Awaiting Signature</p>
-                        </div>
-                        <div class="flex gap-2 w-full md:w-auto">
-                            <button onclick="this.parentElement.parentElement.style.display='none'" class="flex-1 bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded-xl text-xs font-bold transition">APPROVE</button>
-                            <button onclick="this.parentElement.parentElement.style.opacity='0.5'" class="bg-slate-800 hover:bg-red-500 text-white px-6 py-3 rounded-xl text-xs font-bold transition">DECLINE</button>
+                        <div class="text-right">
+                            <p class="text-sm font-black text-green-500">+$45,200.00</p>
+                            <p class="text-[9px] text-slate-600 font-bold uppercase">Settled</p>
                         </div>
                     </div>
 
-                    <!-- Wire 2 -->
-                    <div class="bg-slate-900 border border-slate-800 p-6 rounded-[2rem] flex flex-col md:flex-row justify-between items-center gap-6">
-                        <div class="flex gap-4 items-center">
-                            <div class="w-12 h-12 bg-slate-800 rounded-full flex items-center justify-center font-bold text-slate-400 uppercase">JD</div>
+                    <div class="stat-card p-5 rounded-3xl flex items-center justify-between border-l-4 border-l-amber-500">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center text-amber-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                            </div>
                             <div>
-                                <p class="font-bold text-white">John Doe</p>
-                                <p class="text-[10px] text-slate-500 uppercase font-medium">To: Chase Bank • 22119938</p>
+                                <p class="text-xs font-bold uppercase tracking-tight">Internal Transfer: Vault -> Hold</p>
+                                <p class="text-[10px] text-slate-500 mono">Ref: #ODIN-INTERNAL-X1</p>
                             </div>
                         </div>
-                        <div class="text-center md:text-right">
-                            <p class="text-lg font-black text-white">$1,450.00</p>
-                            <p class="text-[10px] text-yellow-500 font-bold uppercase">Pending Verification</p>
-                        </div>
-                        <div class="flex gap-2 w-full md:w-auto">
-                            <button onclick="this.parentElement.parentElement.style.display='none'" class="flex-1 bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded-xl text-xs font-bold transition">APPROVE</button>
-                            <button class="bg-slate-800 hover:bg-red-500 text-white px-6 py-3 rounded-xl text-xs font-bold transition">DECLINE</button>
+                        <div class="text-right">
+                            <p class="text-sm font-black text-amber-500">$1,000,000.00</p>
+                            <p class="text-[9px] text-slate-600 font-bold uppercase tracking-widest">PENDING AUTH</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- User Control Sidebar -->
+            <!-- Quick Actions -->
             <div class="space-y-6">
-                <h2 class="text-lg font-bold flex items-center gap-2">
-                    <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                    Account Tools
-                </h2>
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-[2rem] space-y-6">
-                    <div>
-                        <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">Search User</label>
-                        <input type="text" placeholder="UID or Name..." class="w-full bg-slate-950 border border-slate-800 p-4 rounded-xl text-sm focus:border-blue-500 outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">Adjust Balance ($)</label>
-                        <input type="number" placeholder="Enter amount..." class="w-full bg-slate-950 border border-slate-800 p-4 rounded-xl text-sm focus:border-blue-500 outline-none">
-                        <button class="w-full mt-4 bg-slate-800 hover:bg-blue-600 text-white font-bold py-3 rounded-xl text-xs transition uppercase">Update Account</button>
-                    </div>
-                    <div class="pt-4 border-t border-slate-800">
-                        <p class="text-[10px] text-slate-500 uppercase font-bold mb-4">Quick Actions</p>
-                        <div class="grid grid-cols-2 gap-2">
-                            <button class="bg-slate-800 p-3 rounded-xl text-[10px] font-bold hover:bg-red-900/30 transition">LOCK USER</button>
-                            <button class="bg-slate-800 p-3 rounded-xl text-[10px] font-bold hover:bg-green-900/30 transition">VERIFY ID</button>
-                        </div>
+                <h4 class="text-xs font-black text-slate-500 uppercase tracking-[0.4em] mb-4">Quick Protocols</h4>
+                <div class="grid grid-cols-1 gap-4">
+                    <button class="w-full p-6 rounded-[2rem] bg-amber-500 text-slate-900 font-black text-xs uppercase tracking-[0.2em] hover:bg-amber-400 transition-all shadow-xl shadow-amber-500/10">
+                        Manual Wire Entry
+                    </button>
+                    <button class="w-full p-6 rounded-[2rem] border border-slate-800 hover:border-amber-500/50 text-white font-black text-xs uppercase tracking-[0.2em] transition-all">
+                        Generate Ledger Report
+                    </button>
+                    <div class="p-8 rounded-[2rem] bg-red-950/20 border border-red-500/20 text-center">
+                        <p class="text-[10px] font-black text-red-500 uppercase tracking-[0.3em] mb-3">System Override</p>
+                        <button class="text-[9px] font-bold text-slate-500 hover:text-red-400 uppercase tracking-widest underline">Emergency Lockdown</button>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Footer -->
+        <footer class="mt-20 pt-8 border-t border-white/5 flex justify-between items-center text-[9px] font-bold text-slate-600 uppercase tracking-[0.4em] mono">
+            <span>Server: North-Odin-Core</span>
+            <span>Version 4.0.2-Stable</span>
+        </footer>
     </main>
 
-    <footer class="p-8 text-center border-t border-slate-800 bg-slate-950">
-        <p class="text-[10px] text-slate-600 font-bold uppercase tracking-[0.3em]">ODIN FINANCIAL CORE • v4.2.0-STABLE</p>
-    </footer>
-
+    <script>
+        // Real-time Clock Implementation
+        function updateClock() {
+            const now = new Date();
+            const h = String(now.getUTCHours()).padStart(2, '0');
+            const m = String(now.getUTCMinutes()).padStart(2, '0');
+            const s = String(now.getUTCSeconds()).padStart(2, '0');
+            document.getElementById('live-clock').textContent = `SYSC: ${h}:${m}:${s} UTC`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
 </body>
 </html>
